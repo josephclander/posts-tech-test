@@ -5,7 +5,7 @@ const Post = ({ handleLikeClick, id, author, text, like }) => {
     <article className="post_container">
       <h3>{author}</h3>
       <p>{text}</p>
-      <button onClick={() => handleLikeClick(id)} style={colour}>
+      <button className="button__like" onClick={() => handleLikeClick(id)} style={colour}>
         {like ? "Unlike" : "Like"}
       </button>
     </article>
