@@ -7,3 +7,5 @@
 2. Build a CreatePostForm component to get information for a post and add it to the top of the list.
 
 3. Add functionality to like a post.
+
+4. You can delete a post if you were the author.

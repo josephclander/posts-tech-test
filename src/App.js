@@ -11,12 +11,16 @@ function App() {
     setPosts((prevPosts) => [postData, ...prevPosts]);
   };
 
+  const deletePost = (id) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  };
+
   const handleLikeClick = (id) => {
-    setPosts(prevPosts => {
-      return prevPosts.map(post => {
-        return post.id === id ? {...post, like: !post.like} : post;
-      })
-    })
+    setPosts((prevPosts) => {
+      return prevPosts.map((post) => {
+        return post.id === id ? { ...post, like: !post.like } : post;
+      });
+    });
   };
 
   return (
@@ -25,7 +29,12 @@ function App() {
       <CreatePostForm addPost={addPost} />
       <h2>Recent Posts</h2>
       {posts.map((post) => (
-        <Post handleLikeClick={handleLikeClick} key={post.id} {...post} />
+        <Post
+          deletePost={deletePost}
+          handleLikeClick={handleLikeClick}
+          key={post.id}
+          {...post}
+        />
       ))}
     </div>
   );

@@ -7,9 +7,9 @@
 .input__button {
   display: block;
   padding: 5px;
-  cursor: pointer;
 }
 
-.button__like {
+button {
   cursor: pointer;
+  margin-right: 5px;
 }
