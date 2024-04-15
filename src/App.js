@@ -11,13 +11,21 @@ function App() {
     setPosts((prevPosts) => [postData, ...prevPosts]);
   };
 
+  const handleLikeClick = (id) => {
+    setPosts(prevPosts => {
+      return prevPosts.map(post => {
+        return post.id === id ? {...post, like: !post.like} : post;
+      })
+    })
+  };
+
   return (
     <div className="App">
       <h2>Create Post</h2>
       <CreatePostForm addPost={addPost} />
       <h2>Recent Posts</h2>
       {posts.map((post) => (
-        <Post key={post.id} {...post} />
+        <Post handleLikeClick={handleLikeClick} key={post.id} {...post} />
       ))}
     </div>
   );

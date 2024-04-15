@@ -2,26 +2,31 @@
     {
         "id": "abcd",
         "author": "josh maker",
-        "text": "This is my first post."
+        "text": "This is my first post.",
+        "like": false
     },
     {
         "id": "efgh",
         "author": "anna lee",
-        "text": "Hello everyone! Excited to join this community."
+        "text": "Hello everyone! Excited to join this community.",
+        "like": false
     },
     {
         "id": "ijkl",
         "author": "mike_b92",
-        "text": "Anyone here into photography? Looking for some tips on portrait shots."
+        "text": "Anyone here into photography? Looking for some tips on portrait shots.",
+        "like": false
     },
     {
         "id": "mnop",
         "author": "sarahC",
-        "text": "Just finished my latest project! Can't wait to share it with you all."
+        "text": "Just finished my latest project! Can't wait to share it with you all.",
+        "like": false
     },
     {
         "id": "qrst",
         "author": "dave.runner",
-        "text": "Good morning! Anyone up for a virtual coffee chat today?"
+        "text": "Good morning! Anyone up for a virtual coffee chat today?",
+        "like": false
     }
 ]

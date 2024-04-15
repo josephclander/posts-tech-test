@@ -10,7 +10,8 @@ const CreatePostForm = ({addPost}) => {
     const data = {
         id: uuidv4(),
         author: "You",
-        text: formRef.current.value
+        text: formRef.current.value,
+        like: false
     }
 
     addPost(data);
