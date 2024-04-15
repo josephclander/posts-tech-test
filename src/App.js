@@ -15,7 +15,7 @@ function App() {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
   };
 
-  const handleLikeClick = (id) => {
+  const likePost = (id) => {
     setPosts((prevPosts) => {
       return prevPosts.map((post) => {
         return post.id === id ? { ...post, like: !post.like } : post;
@@ -31,7 +31,7 @@ function App() {
       {posts.map((post) => (
         <Post
           deletePost={deletePost}
-          handleLikeClick={handleLikeClick}
+          likePost={likePost}
           key={post.id}
           {...post}
         />
