@@ -1,11 +1,19 @@
 import { useRef } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
-const CreatePostForm = () => {
+const CreatePostForm = ({addPost}) => {
   const formRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formRef.current.value);
+
+    const data = {
+        id: uuidv4(),
+        author: "You",
+        text: formRef.current.value
+    }
+
+    addPost(data);
     formRef.current.value = "";
   };
 
