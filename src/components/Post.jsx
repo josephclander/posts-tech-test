@@ -1,3 +1,5 @@
+// src/components/Post.jsx
+
 const Post = ({ editMode, deletePost, likePost, id, author, text, like }) => {
   const likeStyle = like ? { background: "#f86868" } : { background: "#8de88d" }; // red and green
 

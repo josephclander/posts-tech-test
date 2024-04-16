@@ -1,26 +1,31 @@
+// src/components/CreatePostForm.jsx
+
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const CreatePostForm = ({ addPost, editingText }) => {
-  const [text, setText] = useState(editingText || "");
+const CreatePostForm = ({ addPost, postToEdit, toggleModal }) => {
+  const { text: initialText } = postToEdit?.text || "";
+  const [text, setText] = useState(initialText || "");
 
   // necessary to update when editingText changes
   useEffect(() => {
-    setText(editingText || "");
-  }, [editingText]);
+    setText(postToEdit?.text || "");
+  }, [postToEdit]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const data = {
-      id: uuidv4(),
-      author: "You",
-      text: text,
-      like: false,
-    };
-
+    // edit a post or create a new one
+    const data = postToEdit
+      ? { ...postToEdit, text }
+      : {
+          id: uuidv4(),
+          author: "You",
+          text: text,
+          like: false,
+        };
     addPost(data);
     setText("");
+    if (postToEdit) toggleModal();
   };
 
   return (

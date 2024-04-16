@@ -1,3 +1,5 @@
+// src/App.jsx
+
 import { useState } from "react";
 import CreatePostForm from "./components/CreatePostForm";
 import EditModal from "./components/EditModal";
@@ -7,10 +9,23 @@ import Post from "./components/Post";
 function App() {
   const [posts, setPosts] = useState(postsData);
   const [editStatus, toggleEditStatus] = useState(false);
-  const [editingText, setEditingText] = useState('');
+  const [postToEdit, setPostToEdit] = useState("");
 
   const addPost = (postData) => {
-    setPosts((prevPosts) => [postData, ...prevPosts]);
+    // if post exists update it or add it to the top of the list
+    let isUpdated = false;
+    const updatedPosts = posts.map((post) => {
+      if (post.id === postData.id) {
+        isUpdated = true;
+        return postData;
+      } else {
+        return post;
+      }
+    });
+
+    isUpdated
+      ? setPosts(updatedPosts)
+      : setPosts((prevPosts) => [postData, ...prevPosts]);
   };
 
   const deletePost = (id) => {
@@ -21,12 +36,7 @@ function App() {
 
   const editMode = (id) => {
     toggleModal();
-    setEditingText(posts.filter((post) => post.id === id)[0]["text"]);
-
-    // click submit to add info
-    // EXTRA - add "(edited)" in modal at bottom of textto the end of text
-    // modal hides
-    // rerenders list
+    setPostToEdit(posts.filter((post) => post.id === id)[0]);
   };
 
   const likePost = (id) => {
@@ -41,8 +51,9 @@ function App() {
     <>
       {editStatus && (
         <EditModal
+          addPost={addPost}
           editMode={editMode}
-          editingText={editingText}
+          postToEdit={postToEdit}
           toggleModal={toggleModal}
         />
       )}
