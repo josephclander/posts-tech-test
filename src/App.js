@@ -1,11 +1,13 @@
 import { useState } from "react";
 import CreatePostForm from "./components/CreatePostForm";
-
+import EditModal from "./components/EditModal";
 import postsData from "./postsData.json";
 import Post from "./components/Post";
 
 function App() {
   const [posts, setPosts] = useState(postsData);
+  const [editStatus, toggleEditStatus] = useState(false);
+  const [editingText, setEditingText] = useState('');
 
   const addPost = (postData) => {
     setPosts((prevPosts) => [postData, ...prevPosts]);
@@ -13,6 +15,17 @@ function App() {
 
   const deletePost = (id) => {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
+  };
+
+  const editMode = (id) => {
+    setEditingText(posts.filter((post) => post.id !== id)[0]["text"]);
+    toggleEditStatus((prevState) => !prevState);
+    // add current text to the input
+
+    // click submit to add info
+    // EXTRA - add "(edited)" in modal at bottom of textto the end of text
+    // modal hides
+    // rerenders list
   };
 
   const likePost = (id) => {
@@ -24,19 +37,28 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h2>Create Post</h2>
-      <CreatePostForm addPost={addPost} />
-      <h2>Recent Posts</h2>
-      {posts.map((post) => (
-        <Post
-          deletePost={deletePost}
-          likePost={likePost}
-          key={post.id}
-          {...post}
+    <>
+      {editStatus && (
+        <EditModal
+          editMode={editMode}
+          editingText={editingText}
         />
-      ))}
-    </div>
+      )}
+      <div className="App">
+        <h2>Create Post</h2>
+        <CreatePostForm addPost={addPost} />
+        <h2>Recent Posts</h2>
+        {posts.map((post) => (
+          <Post
+            editMode={editMode}
+            deletePost={deletePost}
+            likePost={likePost}
+            key={post.id}
+            {...post}
+          />
+        ))}
+      </div>
+    </>
   );
 }
 

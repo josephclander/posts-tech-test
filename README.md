@@ -9,3 +9,5 @@
 3. Add functionality to like a post.
 
 4. You can delete a post if you were the author.
+
+5. You can edit the post if you were the author.

@@ -1,27 +1,33 @@
-import { useRef } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-const CreatePostForm = ({addPost}) => {
-  const formRef = useRef(null);
+const CreatePostForm = ({ addPost, editingText }) => {
+  const [text, setText] = useState(editingText || "");
+
+  // necessary to update when editingText changes
+  useEffect(() => {
+    setText(editingText || "");
+  }, [editingText]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = {
-        id: uuidv4(),
-        author: "You",
-        text: formRef.current.value,
-        like: false
-    }
+      id: uuidv4(),
+      author: "You",
+      text: text,
+      like: false,
+    };
 
     addPost(data);
-    formRef.current.value = "";
+    setText("");
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <textarea
-        ref={formRef}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
         name="text"
         id="text"
         cols="30"
