@@ -18,6 +18,8 @@ button {
 }
 
 .modal__edit {
+  display: flex;
+  gap: 5px;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.85);
   position: absolute;
@@ -27,4 +29,8 @@ button {
   bottom: 0;
   width: 100vw;
   height: 100vh;
+}
+
+.modal__button {
+  height: 20px;
 }

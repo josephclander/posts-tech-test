@@ -1,12 +1,12 @@
 import CreatePostForm from "./CreatePostForm";
 
-const EditModal = ({editingText}) => {
+const EditModal = ({ editingText, toggleModal }) => {
+
   return (
-     
-      <div className="modal__edit">
-        <CreatePostForm addPost={null} editingText={editingText} />
-      </div>
-    
+    <div className="modal__edit">
+      <CreatePostForm addPost={null} editingText={editingText} />
+      <button onClick={toggleModal} className="modal__button">X</button>
+    </div>
   );
 };
 

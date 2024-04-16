@@ -17,10 +17,11 @@ function App() {
     setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
   };
 
+  const toggleModal = () => toggleEditStatus((prevState) => !prevState);
+
   const editMode = (id) => {
-    setEditingText(posts.filter((post) => post.id !== id)[0]["text"]);
-    toggleEditStatus((prevState) => !prevState);
-    // add current text to the input
+    toggleModal();
+    setEditingText(posts.filter((post) => post.id === id)[0]["text"]);
 
     // click submit to add info
     // EXTRA - add "(edited)" in modal at bottom of textto the end of text
@@ -42,6 +43,7 @@ function App() {
         <EditModal
           editMode={editMode}
           editingText={editingText}
+          toggleModal={toggleModal}
         />
       )}
       <div className="App">
