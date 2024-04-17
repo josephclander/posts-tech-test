@@ -1,6 +1,8 @@
-# Tech Test to Create a message post board
+# Tech test to create a message post board
 
 ### View the completed work
+
+[<img src="https://i3.ytimg.com/vi/CUj-zKa1x94/maxresdefault.jpg">](https://www.youtube.com/watch?v=CUj-zKa1x94&list=PLCG3irSwSz6hoESxoWdGaORmUDPijl-io&index=1)
 
 To see how the code runs now in full functioning state after cloning the repo:
 
